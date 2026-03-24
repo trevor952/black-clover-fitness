@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're In! | Black Clover Fitness</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0f0f0f;
+    --black-2: #1a1a1a;
+    --green: #2d7a3a;
+    --green-light: #3d9e4e;
+    --white: #f5f5f0;
+    --grey: #888;
+    --grey-light: #aaa;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  /* green glow behind content */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(45,122,58,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    background: var(--black-2);
+    border: 1px solid rgba(255,255,255,0.07);
+    max-width: 560px;
+    width: 100%;
+    padding: 56px 48px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.7s 0.1s ease forwards;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--green), var(--green-light));
+  }
+
+  .icon {
+    font-size: 52px;
+    margin-bottom: 24px;
+    display: block;
+    animation: pop 0.5s 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  }
+
+  @keyframes pop {
+    from { transform: scale(0.5); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .eyebrow::before,
+  .eyebrow::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--green-light);
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 0.95;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  h1 span { color: var(--green-light); }
+
+  .body-text {
+    font-size: 16px;
+    color: var(--grey-light);
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+    margin-bottom: 36px;
+  }
+
+  .next-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 14px;
+  }
+
+  .next-text {
+    font-size: 15px;
+    color: var(--grey-light);
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+
+  .btn {
+    display: block;
+    background: var(--green);
+    color: var(--white);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    padding: 16px 32px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+
+  .btn:hover {
+    background: var(--green-light);
+    transform: translateY(-2px);
+  }
+
+  .or-text {
+    font-size: 13px;
+    color: var(--grey);
+    margin-bottom: 6px;
+  }
+
+  .phone-link {
+    font-size: 14px;
+    color: var(--grey-light);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .logo {
+    position: relative;
+    z-index: 1;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--grey);
+    margin-top: 28px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.5s ease forwards;
+  }
+
+  .logo span { color: var(--green-light); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 500px) {
+    .card { padding: 40px 28px; }
+    h1 { font-size: 42px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <span class="icon">📥</span>
+  <div class="eyebrow">Black Clover Fitness</div>
+  <h1>Check Your<br><span>Inbox.</span></h1>
+  <p class="body-text">
+    Your copy of <strong>The No-BS Fat Loss Framework</strong> is on its way. Check your email — 
+    it should arrive within the next few minutes. Check your spam folder if you don't see it.
+  </p>
+
+  <div class="divider"></div>
+
+  <div class="next-label">Ready to Go Further?</div>
+  <p class="next-text">
+    The guide gives you the framework. A coach gives you the results. 
+    Book a free consultation and let's talk about what this looks like for you specifically.
+  </p>
+
+  <a class="btn" href="https://gym.blackcloverfitnessomaha.com/widget/bookings/black-clover-fitness" target="_blank">
+    BOOK YOUR FREE CONSULTATION →
+  </a>
+
+  <p class="or-text">Or call us directly:</p>
+  <a class="phone-link" href="tel:4029642300">(402) 964-2300</a>
+</div>
+
+<div class="logo"><span>BLACK CLOVER</span> FITNESS &nbsp;·&nbsp; West Omaha, Nebraska</div>
+
+</body>
+</html>
