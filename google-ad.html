@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Consultation | Black Clover Fitness — West Omaha Personal Training</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0f0f0f;
+    --black-2: #1a1a1a;
+    --black-3: #222222;
+    --green: #2d7a3a;
+    --green-light: #3d9e4e;
+    --green-glow: rgba(61,158,78,0.15);
+    --white: #f5f5f0;
+    --grey: #888;
+    --grey-light: #aaa;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(15,15,15,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--green-light); }
+
+  .nav-phone {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green-light);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 40px 80px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 55% 65% at 75% 45%, rgba(45,122,58,0.14) 0%, transparent 65%),
+      radial-gradient(ellipse 35% 45% at 15% 85%, rgba(45,122,58,0.07) 0%, transparent 60%),
+      var(--black);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  /* Left col */
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s forwards;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--green-light);
+    flex-shrink: 0;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 6vw, 82px);
+    line-height: 0.93;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.2s forwards;
+  }
+
+  .hero-title .accent { color: var(--green-light); }
+
+  .hero-subtitle {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--grey-light);
+    line-height: 1.65;
+    margin-bottom: 36px;
+    max-width: 460px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.32s forwards;
+  }
+
+  /* Proof pills */
+  .proof-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.42s forwards;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(45,122,58,0.1);
+    border: 1px solid rgba(61,158,78,0.25);
+    padding: 7px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--grey-light);
+    border-radius: 2px;
+  }
+
+  .pill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-light);
+    flex-shrink: 0;
+  }
+
+  /* Stars */
+  .stars-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.5s forwards;
+  }
+
+  .stars {
+    color: #f5a623;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  .stars-label {
+    font-size: 13px;
+    color: var(--grey);
+  }
+
+  /* FORM CARD */
+  .form-card {
+    background: var(--black-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-top: 3px solid var(--green);
+    padding: 44px 40px;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.45s forwards;
+  }
+
+  .form-card-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 10px;
+  }
+
+  .form-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 1px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .form-card-sub {
+    font-size: 14px;
+    color: var(--grey);
+    margin-bottom: 28px;
+    line-height: 1.55;
+  }
+
+  .ghl-form-wrap {
+    background: var(--black-3);
+    overflow: hidden;
+  }
+
+  .ghl-form-wrap iframe {
+    filter: invert(1) hue-rotate(180deg);
+    opacity: 0.9;
+  }
+
+  .form-disclaimer {
+    font-size: 11px;
+    color: #555;
+    text-align: center;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  /* PROOF STRIP */
+  .proof-strip {
+    position: relative;
+    z-index: 1;
+    background: var(--black-2);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { display: flex; align-items: center; gap: 14px; }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    color: var(--green-light);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+
+  .stat-label { font-size: 13px; color: var(--grey); line-height: 1.4; max-width: 90px; }
+
+  .stat-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.07); }
+
+  /* SECTIONS */
+  .section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--green-light);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 62px);
+    line-height: 0.95;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .section-body {
+    font-size: 17px;
+    color: var(--grey-light);
+    max-width: 560px;
+    margin-bottom: 56px;
+    line-height: 1.7;
+  }
+
+  /* WHO WE HELP */
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2px;
+  }
+
+  .who-card {
+    background: var(--black-2);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 32px 28px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .who-card:hover {
+    border-color: rgba(61,158,78,0.3);
+    background: rgba(45,122,58,0.04);
+  }
+
+  .who-icon {
+    font-size: 22px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .who-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+
+  .who-desc { font-size: 14px; color: var(--grey); line-height: 1.6; }
+
+  /* WHY BCF */
+  .why-section {
+    position: relative;
+    z-index: 1;
+    background: var(--black-2);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .why-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 50px;
+  }
+
+  .why-card {
+    background: var(--black);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 36px 32px;
+    display: flex;
+    gap: 20px;
+    transition: border-color 0.2s;
+  }
+
+  .why-card:hover { border-color: rgba(61,158,78,0.25); }
+
+  .why-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--green);
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: -2px;
+  }
+
+  .why-content {}
+
+  .why-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+
+  .why-desc { font-size: 14px; color: var(--grey); line-height: 1.6; }
+
+  /* TESTIMONIALS */
+  .testimonials-section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2px;
+    margin-top: 50px;
+  }
+
+  .testi-card {
+    background: var(--black-2);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 32px 28px;
+  }
+
+  .testi-stars { color: #f5a623; font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
+
+  .testi-quote {
+    font-size: 15px;
+    color: var(--grey-light);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .testi-name { font-weight: 600; font-size: 14px; color: var(--white); }
+  .testi-title { font-size: 12px; color: var(--grey); margin-top: 2px; }
+
+  /* BOTTOM CTA */
+  .bottom-cta {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 120px 40px;
+    overflow: hidden;
+    background: var(--black-2);
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .bottom-cta-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(45,122,58,0.1) 0%, transparent 70%);
+  }
+
+  .bottom-cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .bottom-cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 6vw, 72px);
+    line-height: 0.95;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .bottom-cta-body {
+    font-size: 16px;
+    color: var(--grey-light);
+    margin-bottom: 40px;
+    line-height: 1.65;
+  }
+
+  .btn-large {
+    background: var(--green);
+    color: var(--white);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    padding: 18px 48px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-large:hover { background: var(--green-light); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    background: var(--black);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: var(--white); }
+  .footer-logo span { color: var(--green-light); }
+  .footer-text { font-size: 13px; color: var(--grey); }
+  .footer-text a { color: var(--grey-light); text-decoration: none; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 50px; }
+    .hero-title { font-size: 58px; }
+    .proof-strip { gap: 30px; padding: 24px; }
+    .stat-divider { display: none; }
+    .section { padding: 70px 24px; }
+    .why-inner { padding: 70px 24px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .bottom-cta { padding: 80px 24px; }
+    footer { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 500px) {
+    .form-card { padding: 32px 24px; }
+    .who-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>BLACK CLOVER</span> FITNESS</a>
+  <a class="nav-phone" href="tel:4029642300">(402) 964-2300</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">West Omaha Personal Training</div>
+      <h1 class="hero-title">Personal Training<br>That Actually<br><span class="accent">Works.</span></h1>
+      <p class="hero-subtitle">Semi-private coaching for adults 40–70 who are done guessing and ready to see real results. Max 5 clients per session. 45 minutes. No gimmicks.</p>
+
+      <div class="proof-pills">
+        <div class="pill"><div class="pill-dot"></div>Max 5 Per Session</div>
+        <div class="pill"><div class="pill-dot"></div>45-Minute Sessions</div>
+        <div class="pill"><div class="pill-dot"></div>Est. 2008</div>
+        <div class="pill"><div class="pill-dot"></div>Best of Omaha Winner</div>
+      </div>
+
+      <div class="stars-row">
+        <div class="stars">★★★★★</div>
+        <div class="stars-label">5-Star Rated · West Omaha's #1 Semi-Private Studio</div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-card-label">No Commitment Required</div>
+      <div class="form-card-title">Claim Your Free Consultation</div>
+      <div class="form-card-sub">Takes 30 seconds. We'll reach out within one business day to schedule your session.</div>
+      <div class="ghl-form-wrap">
+        <iframe
+          src="https://gym.blackcloverfitnessomaha.com/widget/form/dSOaZpC95SzwuyVILvjG"
+          style="width:100%;height:489px;border:none;display:block;"
+          id="inline-dSOaZpC95SzwuyVILvjG"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="Free Consultation"
+          data-height="489"
+          data-layout-iframe-id="inline-dSOaZpC95SzwuyVILvjG"
+          data-form-id="dSOaZpC95SzwuyVILvjG"
+          title="Free Consultation">
+        </iframe>
+        <script src="https://gym.blackcloverfitnessomaha.com/js/form_embed.js"></script>
+      </div>
+      <p class="form-disclaimer">100% free. No commitment required. We respect your privacy and will never spam you.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <div class="stat-item">
+    <div class="stat-num">17+</div>
+    <div class="stat-label">Years Coaching in Omaha</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <div class="stat-num">5</div>
+    <div class="stat-label">Max Clients Per Session</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <div class="stat-num">45</div>
+    <div class="stat-label">Minutes. Efficient. Effective.</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <div class="stat-num">0</div>
+    <div class="stat-label">Gimmicks. Ever.</div>
+  </div>
+</div>
+
+<!-- WHO WE HELP -->
+<section class="section">
+  <div class="section-eyebrow reveal">Who We Work With</div>
+  <h2 class="section-title reveal">Built for adults who are<br>done starting over.</h2>
+  <p class="section-body reveal">We specialize in adults 40–70 who need a program that fits a real life — not a 25-year-old's schedule. If you've tried other things and they haven't stuck, this is different.</p>
+
+  <div class="who-grid">
+    <div class="who-card reveal">
+      <span class="who-icon">💼</span>
+      <div class="who-title">Busy Professionals</div>
+      <div class="who-desc">You don't have two hours. Our 45-minute sessions are efficient, coached, and effective — no wasted reps, no guesswork.</div>
+    </div>
+    <div class="who-card reveal">
+      <span class="who-icon">📈</span>
+      <div class="who-title">Business Owners & Executives</div>
+      <div class="who-desc">You lead high-stakes days. Your training should match that energy — purposeful, structured, and results-driven.</div>
+    </div>
+    <div class="who-card reveal">
+      <span class="who-icon">🎯</span>
+      <div class="who-title">Adults 40–70 Rebuilding</div>
+      <div class="who-desc">Post-injury, post-pandemic, or just getting back on track — we meet you where you are and build from there.</div>
+    </div>
+    <div class="who-card reveal">
+      <span class="who-icon">🔄</span>
+      <div class="who-title">People Who've Tried Everything</div>
+      <div class="who-desc">Big-box gyms that ignored you. Apps that didn't stick. You need real coaching, not another program to quit.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY BCF -->
+<div class="why-section">
+  <div class="why-inner">
+    <div class="section-eyebrow reveal">Why Black Clover</div>
+    <h2 class="section-title reveal">We're not a gym.<br>We're a coaching system.</h2>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-num">01</div>
+        <div class="why-content">
+          <div class="why-title">Small Groups — Maximum Attention</div>
+          <div class="why-desc">Every session has 5 or fewer members. Your coach knows your name, your limits, and your goals. You're never just a member number.</div>
+        </div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-num">02</div>
+        <div class="why-content">
+          <div class="why-title">Programmed for Your Body</div>
+          <div class="why-desc">No WOD randomness. No spin-class cardio theater. Every session is periodized, tracked, and built around what your body actually needs.</div>
+        </div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-num">03</div>
+        <div class="why-content">
+          <div class="why-title">Accountability That Actually Works</div>
+          <div class="why-desc">Your coach follows up. Your group shows up for you. This is the environment that makes the difference between trying and doing.</div>
+        </div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-num">04</div>
+        <div class="why-content">
+          <div class="why-title">45 Minutes — In and Out</div>
+          <div class="why-desc">No filler. No wasted time. Every minute is purposeful. You'll accomplish more in 45 focused minutes than most people do in 90.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="section">
+    <div class="section-eyebrow reveal">Real Members. Real Results.</div>
+    <h2 class="section-title reveal">What our members<br>are saying.</h2>
+
+    <div class="testimonials-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"I've tried every gym in Omaha. Black Clover is the first place that felt like it was actually designed for someone like me. The coaches know what they're doing and they care about your results."</div>
+        <div class="testi-name">Karen M.</div>
+        <div class="testi-title">Marketing Executive, 54</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"I've lost 22 lbs in four months without feeling like I'm killing myself. The small group format is perfect — you get pushed, but it never feels like chaos. I actually look forward to my sessions."</div>
+        <div class="testi-name">Dave R.</div>
+        <div class="testi-title">Business Owner, 61</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"After two knee surgeries I thought my training days were over. Trevor and his team built a program that worked around my limitations and still got me stronger than I was before."</div>
+        <div class="testi-name">Linda S.</div>
+        <div class="testi-title">Teacher, 47</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta">
+  <div class="bottom-cta-bg"></div>
+  <div class="bottom-cta-inner">
+    <div class="section-eyebrow reveal" style="justify-content:center;">Ready to Start</div>
+    <h2 class="bottom-cta-title reveal">Stop doing this alone.</h2>
+    <p class="bottom-cta-body reveal">Your free consultation is a no-pressure conversation about where you are and whether Black Clover is the right fit. No sales pitch. Just clarity.</p>
+    <a class="btn-large reveal" href="#claim" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Claim Your Free Consultation</a>
+    <p class="reveal" style="margin-top: 20px; font-size: 14px; color: var(--grey);">Or call us directly: <a href="tel:4029642300" style="color: var(--grey-light); text-decoration: underline;">(402) 964-2300</a></p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span>BLACK CLOVER</span> FITNESS</div>
+  <div class="footer-text">West Omaha, Nebraska &nbsp;·&nbsp; <a href="tel:4029642300">(402) 964-2300</a> &nbsp;·&nbsp; <a href="https://blackcloverfitnessomaha.com/fitness-programs/" target="_blank">View Programs</a></div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
