@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2-Week Block Training Trial — $79 | Black Clover Fitness West Omaha</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0f0f0f;
+    --black-2: #1a1a1a;
+    --black-3: #222222;
+    --green: #2d7a3a;
+    --green-light: #3d9e4e;
+    --green-glow: rgba(61,158,78,0.15);
+    --white: #f5f5f0;
+    --grey: #888;
+    --grey-light: #aaa;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(15,15,15,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--green-light); }
+  .nav-phone { font-size: 14px; font-weight: 600; color: var(--green-light); text-decoration: none; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 40px 80px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 55% 65% at 75% 45%, rgba(45,122,58,0.14) 0%, transparent 65%),
+      radial-gradient(ellipse 35% 45% at 15% 85%, rgba(45,122,58,0.07) 0%, transparent 60%),
+      var(--black);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s forwards;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--green-light);
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 6vw, 82px);
+    line-height: 0.93;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.2s forwards;
+  }
+
+  .hero-title .accent { color: var(--green-light); }
+
+  /* Price badge */
+  .price-badge {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 12px;
+    background: rgba(45,122,58,0.12);
+    border: 1px solid rgba(61,158,78,0.3);
+    padding: 14px 24px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.28s forwards;
+  }
+
+  .price-main {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--green-light);
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .price-detail {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price-desc {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .price-compare {
+    font-size: 13px;
+    color: var(--grey);
+    text-decoration: line-through;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    color: var(--grey-light);
+    line-height: 1.65;
+    margin-bottom: 32px;
+    max-width: 460px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.35s forwards;
+  }
+
+  /* Schedule pills */
+  .schedule-wrap {
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.42s forwards;
+  }
+
+  .schedule-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 12px;
+  }
+
+  .schedule-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .schedule-pill {
+    background: var(--black-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--grey-light);
+    border-radius: 2px;
+  }
+
+  .schedule-pill.highlight {
+    border-color: rgba(61,158,78,0.3);
+    color: var(--green-light);
+    background: rgba(45,122,58,0.08);
+  }
+
+  /* Stars */
+  .stars-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.5s forwards;
+  }
+
+  .stars { color: #f5a623; font-size: 18px; letter-spacing: 2px; }
+  .stars-label { font-size: 13px; color: var(--grey); }
+
+  /* FORM CARD */
+  .form-card {
+    background: var(--black-2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-top: 3px solid var(--green);
+    padding: 44px 40px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.45s forwards;
+  }
+
+  .form-card-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 10px;
+  }
+
+  .form-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    letter-spacing: 1px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .form-card-sub {
+    font-size: 14px;
+    color: var(--grey);
+    margin-bottom: 24px;
+    line-height: 1.55;
+  }
+
+  .ghl-form-wrap {
+    background: var(--black-3);
+    overflow: hidden;
+  }
+
+  .ghl-form-wrap iframe {
+    filter: invert(1) hue-rotate(180deg);
+    opacity: 0.9;
+  }
+
+  .form-disclaimer {
+    font-size: 11px;
+    color: #555;
+    text-align: center;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  /* PROOF STRIP */
+  .proof-strip {
+    position: relative;
+    z-index: 1;
+    background: var(--black-2);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { display: flex; align-items: center; gap: 14px; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--green-light); letter-spacing: 1px; line-height: 1; }
+  .stat-label { font-size: 13px; color: var(--grey); line-height: 1.4; max-width: 90px; }
+  .stat-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.07); }
+
+  /* WHAT IS BLOCK TRAINING */
+  .section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--green-light);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 62px);
+    line-height: 0.95;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .section-body {
+    font-size: 17px;
+    color: var(--grey-light);
+    max-width: 680px;
+    margin-bottom: 56px;
+    line-height: 1.7;
+  }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  /* NOT THIS section */
+  .compare-section {
+    position: relative;
+    z-index: 1;
+    background: var(--black-2);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .compare-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 50px;
+  }
+
+  .compare-card {
+    padding: 40px 36px;
+  }
+
+  .compare-card.bad {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .compare-card.good {
+    background: rgba(45,122,58,0.06);
+    border: 1px solid rgba(61,158,78,0.2);
+  }
+
+  .compare-card-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .compare-card.bad .compare-card-label { color: #666; }
+  .compare-card.good .compare-card-label { color: var(--green-light); }
+
+  .compare-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .compare-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .compare-card.bad .compare-list li { color: #555; }
+  .compare-card.good .compare-list li { color: var(--grey-light); }
+
+  .compare-list li::before {
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 14px;
+  }
+
+  .compare-card.bad .compare-list li::before { content: '✗'; color: #444; }
+  .compare-card.good .compare-list li::before { content: '✓'; color: var(--green-light); font-weight: 700; }
+
+  /* HOW IT WORKS */
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2px;
+    margin-top: 50px;
+  }
+
+  .how-card {
+    background: var(--black-2);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 36px 28px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .how-card:hover {
+    border-color: rgba(61,158,78,0.3);
+    background: rgba(45,122,58,0.04);
+  }
+
+  .how-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 16px;
+    opacity: 0.6;
+  }
+
+  .how-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+
+  .how-desc { font-size: 14px; color: var(--grey); line-height: 1.6; }
+
+  /* FOR EVERYONE */
+  .levels-section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .levels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+    margin-top: 50px;
+  }
+
+  .level-card {
+    background: var(--black-2);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 36px 28px;
+    transition: border-color 0.2s;
+  }
+
+  .level-card:hover { border-color: rgba(61,158,78,0.25); }
+
+  .level-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green-light);
+    background: rgba(45,122,58,0.1);
+    border: 1px solid rgba(61,158,78,0.2);
+    padding: 4px 10px;
+    margin-bottom: 16px;
+  }
+
+  .level-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+
+  .level-desc { font-size: 14px; color: var(--grey); line-height: 1.6; }
+
+  /* TESTIMONIALS */
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2px;
+    margin-top: 50px;
+  }
+
+  .testi-card {
+    background: var(--black-2);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 32px 28px;
+  }
+
+  .testi-stars { color: #f5a623; font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
+  .testi-quote { font-size: 15px; color: var(--grey-light); line-height: 1.65; margin-bottom: 20px; font-style: italic; }
+  .testi-name { font-weight: 600; font-size: 14px; color: var(--white); }
+  .testi-desc { font-size: 12px; color: var(--grey); margin-top: 2px; }
+
+  /* BOTTOM CTA */
+  .bottom-cta {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 120px 40px;
+    overflow: hidden;
+    background: var(--black-2);
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .bottom-cta-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(45,122,58,0.1) 0%, transparent 70%);
+  }
+
+  .bottom-cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .bottom-cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 6vw, 72px);
+    line-height: 0.95;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .bottom-cta-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 96px);
+    color: var(--green-light);
+    letter-spacing: 3px;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .bottom-cta-body {
+    font-size: 16px;
+    color: var(--grey-light);
+    margin-bottom: 40px;
+    line-height: 1.65;
+  }
+
+  .btn-large {
+    background: var(--green);
+    color: var(--white);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    padding: 18px 48px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-large:hover { background: var(--green-light); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    background: var(--black);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: var(--white); }
+  .footer-logo span { color: var(--green-light); }
+  .footer-text { font-size: 13px; color: var(--grey); }
+  .footer-text a { color: var(--grey-light); text-decoration: none; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 50px; }
+    .hero-title { font-size: 58px; }
+    .proof-strip { gap: 30px; padding: 24px; }
+    .stat-divider { display: none; }
+    .section { padding: 70px 24px; }
+    .compare-inner { padding: 70px 24px; }
+    .two-col { grid-template-columns: 1fr; gap: 40px; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .bottom-cta { padding: 80px 24px; }
+    footer { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 500px) {
+    .form-card { padding: 32px 24px; }
+    .how-grid { grid-template-columns: 1fr; }
+    .levels-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>BLACK CLOVER</span> FITNESS</a>
+  <a class="nav-phone" href="tel:4029642300">(402) 964-2300</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">West Omaha — Limited Spots Available</div>
+      <h1 class="hero-title">Two Weeks.<br>Unlimited <span class="accent">Sessions.</span><br>One Decision.</h1>
+
+      <div class="price-badge">
+        <div class="price-main">$79</div>
+        <div class="price-detail">
+          <div class="price-desc">2-Week Unlimited Trial</div>
+          <div class="price-compare">Regular $95–$115/week</div>
+        </div>
+      </div>
+
+      <p class="hero-subtitle">Our Block Training sessions are capped at 10 people, coach-led, and built around functional strength and metabolic conditioning. This is not your typical group fitness class.</p>
+
+      <div class="schedule-wrap">
+        <div class="schedule-label">Available Session Times</div>
+        <div class="schedule-grid">
+          <div class="schedule-pill highlight">5:00 AM Daily</div>
+          <div class="schedule-pill highlight">6:00 AM Daily</div>
+          <div class="schedule-pill highlight">7:00 AM Daily</div>
+          <div class="schedule-pill highlight">8:00 AM — M/W/F</div>
+          <div class="schedule-pill highlight">4:00 PM Daily</div>
+          <div class="schedule-pill highlight">6:00 PM — M/W/Th</div>
+        </div>
+      </div>
+
+      <div class="stars-row">
+        <div class="stars">★★★★★</div>
+        <div class="stars-label">5-Star Rated · Est. 2008 · West Omaha</div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-card-label">Limited Spots — Claim Yours</div>
+      <div class="form-card-title">Start Your $79 Trial</div>
+      <div class="form-card-sub">Takes 30 seconds. We'll reach out within a few hours to confirm your schedule and get you started.</div>
+      <div class="ghl-form-wrap">
+        <iframe
+          src="https://gym.blackcloverfitnessomaha.com/widget/form/dSOaZpC95SzwuyVILvjG"
+          style="width:100%;height:489px;border:none;display:block;"
+          id="inline-dSOaZpC95SzwuyVILvjG"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="Google Ad - Free Consultation"
+          data-height="489"
+          data-layout-iframe-id="inline-dSOaZpC95SzwuyVILvjG"
+          data-form-id="dSOaZpC95SzwuyVILvjG"
+          title="Google Ad - Free Consultation">
+        </iframe>
+        <script src="https://gym.blackcloverfitnessomaha.com/js/form_embed.js"></script>
+      </div>
+      <p class="form-disclaimer">No long-term commitment required. We'll confirm your spot and preferred time before you start.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <div class="stat-item">
+    <div class="stat-num">10</div>
+    <div class="stat-label">Max Clients Per Session</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <div class="stat-num">45</div>
+    <div class="stat-label">Minutes. Coached. Effective.</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <div class="stat-num">17+</div>
+    <div class="stat-label">Years Coaching in Omaha</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <div class="stat-num">$79</div>
+    <div class="stat-label">Full 2-Week Trial</div>
+  </div>
+</div>
+
+<!-- WHAT IS BLOCK TRAINING -->
+<section class="section">
+  <div class="section-eyebrow reveal">What Is Block Training</div>
+  <h2 class="section-title reveal">Not a class.<br>Not a workout.<br>A coaching system.</h2>
+
+  <div class="two-col">
+    <div>
+      <p class="section-body reveal" style="margin-bottom: 28px;">Block Training at BCF is a 45-minute, coach-led session built around two things that actually move the needle: <strong style="color:var(--white)">functional strength training</strong> and <strong style="color:var(--white)">built-in metabolic conditioning.</strong></p>
+      <p class="section-body reveal" style="margin-bottom: 28px;">We don't track calories burned. We don't celebrate how sweaty you got. We care about the things that actually change your body and your life — getting stronger, moving better, building the kind of conditioning that carries over into everything you do.</p>
+      <p class="section-body reveal" style="margin-bottom: 0;">Every session is programmed and coached. You're not wandering around a gym floor guessing what to do next. You show up, you get coached, you get results.</p>
+    </div>
+    <div>
+      <div class="how-grid" style="margin-top: 0; grid-template-columns: 1fr;">
+        <div class="how-card reveal">
+          <div class="how-num">01</div>
+          <div class="how-title">Functional Strength First</div>
+          <div class="how-desc">Every session is anchored in compound, functional movements that build real-world strength — not just mirror muscles. Progressive overload is built into the program so you keep getting stronger week over week.</div>
+        </div>
+        <div class="how-card reveal">
+          <div class="how-num">02</div>
+          <div class="how-title">Built-In Metabolic Conditioning</div>
+          <div class="how-desc">Metabolic work is structured into every session — not slapped on at the end as an afterthought. It complements the strength work, not competes with it. Your conditioning improves as your strength does.</div>
+        </div>
+        <div class="how-card reveal">
+          <div class="how-num">03</div>
+          <div class="how-title">Capped at 10. Always Coached.</div>
+          <div class="how-desc">Every Block session has a maximum of 10 people and a coach running it. You get attention, correction, and accountability — not just a playlist and a timer.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOT LIKE OTHER GROUP TRAINING -->
+<div class="compare-section">
+  <div class="compare-inner">
+    <div class="section-eyebrow reveal">The Difference</div>
+    <h2 class="section-title reveal">This isn't what you think<br>group training is.</h2>
+    <p style="font-size:17px; color:var(--grey-light); max-width:560px; line-height:1.7; margin-top:20px;" class="reveal">Most "group fitness" is about energy, music, and how hard you can push in 60 minutes. Ours is about building something — a stronger, more capable body that performs better every single week.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card bad reveal">
+        <div class="compare-card-label">Typical Group Fitness</div>
+        <ul class="compare-list">
+          <li>Random workouts with no progression</li>
+          <li>Focused on calories burned and sweat</li>
+          <li>20–30 people, minimal coaching</li>
+          <li>Same workout for everyone regardless of ability</li>
+          <li>You leave tired but not necessarily better</li>
+          <li>No accountability between sessions</li>
+        </ul>
+      </div>
+      <div class="compare-card good reveal">
+        <div class="compare-card-label">BCF Block Training</div>
+        <ul class="compare-list">
+          <li>Programmed sessions with built-in progression</li>
+          <li>Focused on strength, function, and real results</li>
+          <li>Max 10 people — coach knows your name</li>
+          <li>Scaled to your fitness level and goals</li>
+          <li>You leave better than when you walked in</li>
+          <li>Team environment that holds you accountable</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WORKS FOR ALL LEVELS -->
+<section class="levels-section">
+  <div class="section">
+    <div class="section-eyebrow reveal">Who It's For</div>
+    <h2 class="section-title reveal">Built for every stage.<br>Scaled to every goal.</h2>
+    <p class="section-body reveal">One of the most common things we hear: "I'm not sure I'm fit enough for that." You are. Block Training is designed to meet you exactly where you are and build from there.</p>
+
+    <div class="levels-grid">
+      <div class="level-card reveal">
+        <div class="level-tag">Just Getting Started</div>
+        <div class="level-title">New to Structured Training</div>
+        <div class="level-desc">Every movement is coached and scalable. You'll never be thrown into something you can't handle. Our coaches meet you where you are and build from there — no judgment, no ego.</div>
+      </div>
+      <div class="level-card reveal">
+        <div class="level-tag">Getting Back On Track</div>
+        <div class="level-title">Returning After a Break</div>
+        <div class="level-desc">Post-injury, post-pandemic, post-life-getting-in-the-way — we specialize in helping adults get back to consistent training without re-injuring themselves or burning out in week one.</div>
+      </div>
+      <div class="level-card reveal">
+        <div class="level-tag">Ready to Level Up</div>
+        <div class="level-title">Already Active, Want More</div>
+        <div class="level-desc">If you've been exercising on your own but hitting a wall, Block Training adds the structure, progression, and accountability that solo workouts can't give you. You'll be challenged every session.</div>
+      </div>
+      <div class="level-card reveal">
+        <div class="level-tag">Busy Professional</div>
+        <div class="level-title">Limited Time, High Standards</div>
+        <div class="level-desc">45 minutes. Done. No wasted time, no guesswork, no staying late trying to figure out what to do next. You show up, get coached, and get on with your day stronger than before.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<div style="background:var(--black-2); border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05); position:relative; z-index:1;">
+  <div class="section">
+    <div class="section-eyebrow reveal">Real Members. Real Results.</div>
+    <h2 class="section-title reveal">What our members are saying.</h2>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"I've done CrossFit, Orange Theory, and every gym in Omaha. Nothing has made me feel stronger or more consistent than BCF's Block Training. The coaches actually know what they're doing."</div>
+        <div class="testi-name">Mike T.</div>
+        <div class="testi-desc">Sales Executive, 52</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"I was nervous to try group training at 58 but the sessions are completely scalable. My coach adjusts everything to my level and I've gotten stronger than I've been in 20 years."</div>
+        <div class="testi-name">Sandra K.</div>
+        <div class="testi-desc">Nurse Practitioner, 58</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"The team environment is something I didn't know I needed. Everyone pushes each other but there's zero intimidation. I've been coming for two years and I'm still getting results."</div>
+        <div class="testi-name">Jason R.</div>
+        <div class="testi-desc">Business Owner, 45</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta">
+  <div class="bottom-cta-bg"></div>
+  <div class="bottom-cta-inner">
+    <div class="section-eyebrow reveal" style="justify-content:center;">Limited Spots Available</div>
+    <h2 class="bottom-cta-title reveal">Two weeks to find out<br>if this is for you.</h2>
+    <div class="bottom-cta-price reveal">$79</div>
+    <p class="bottom-cta-body reveal">Unlimited Block Training sessions for two full weeks. We'll reach out within a few hours to confirm your schedule and get you started. No long-term commitment required.</p>
+    <a class="btn-large reveal" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Claim Your $79 Trial</a>
+    <p class="reveal" style="margin-top: 20px; font-size: 14px; color: var(--grey);">Questions? Call or text: <a href="tel:4029642300" style="color: var(--grey-light); text-decoration: underline;">(402) 964-2300</a></p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span>BLACK CLOVER</span> FITNESS</div>
+  <div class="footer-text">West Omaha, Nebraska &nbsp;·&nbsp; <a href="tel:4029642300">(402) 964-2300</a> &nbsp;·&nbsp; <a href="https://blackcloverfitnessomaha.com/fitness-programs/" target="_blank">View Programs</a></div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
